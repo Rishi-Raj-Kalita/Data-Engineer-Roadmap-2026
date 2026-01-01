@@ -1,7 +1,3 @@
-Below is a **clean, professional README-style version** of your content.
-It is structured, easy to scan, and suitable for **GitHub, Notion, or course landing pages**.
-
----
 
 # 60-Day Roadmap for Data Engineers (2026)
 
