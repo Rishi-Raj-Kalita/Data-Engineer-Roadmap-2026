@@ -1,6 +1,8 @@
 
 # 60-Day Roadmap for Data Engineers (2026)
 
+## 🔗 Playlist Link: [Data with Rishi](https://youtu.be/uM4W036UFHw?si=2SVApqB-7YtCrMn6)
+
 A structured, interview-focused roadmap designed to help Data Engineers become **interview-ready for top product companies** using real-world scenarios, production-grade projects, and recent interview trends.
 
 ---
@@ -122,3 +124,5 @@ By the end of this 60-day roadmap, you will be:
 * Confident in SQL, PySpark, Data Modeling, and System Design
 * Equipped with a **production-grade project** to showcase in interviews
 * Prepared to clear HR, managerial, and technical rounds effectively
+
+
