@@ -223,12 +223,3 @@ CROSS JOIN B;
 * CROSS JOIN can explode data size and must be used carefully
 
 ---
-
-If you want next:
-
-* Visual join explanation diagrams
-* Join behavior with composite keys
-* Spark SQL join behavior
-* Interview traps and common mistakes
-
-Just tell me 👍
