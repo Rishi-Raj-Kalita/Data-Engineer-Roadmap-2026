@@ -5,7 +5,7 @@
 #### Problem Statement
 
 You are given a table containing a sequence of numbers.
-Write an SQL query to identify the numbers that appear **more than 3 times consecutively**.
+Write an SQL query to identify the numbers that appear **atleast 3 times consecutively**.
 
 ---
 
