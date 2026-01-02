@@ -46,6 +46,31 @@ INSERT INTO EMPLOYEE (emp_id, name, salary, department_name) VALUES
 (5, 'Eve', 70000, 'Sales');
 ```
 
+```python
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType
+
+# Define schema
+employee_schema = StructType([
+    StructField("emp_id", IntegerType(), nullable=False),
+    StructField("name", StringType(), nullable=True),
+    StructField("salary", IntegerType(), nullable=True),
+    StructField("department_name", StringType(), nullable=True)
+])
+
+# Data
+employee_data = [
+    (1, "Alice", 60000, "Engineering"),
+    (2, "Bob", 50000, "Engineering"),
+    (3, "Charlie", 40000, "HR"),
+    (4, "Diana", 45000, "HR"),
+    (5, "Eve", 70000, "Sales")
+]
+
+# Create DataFrame
+employee_df = spark.createDataFrame(employee_data, schema=employee_schema)
+```
+
+
 ---
 
 ## EMPLOYEE Table

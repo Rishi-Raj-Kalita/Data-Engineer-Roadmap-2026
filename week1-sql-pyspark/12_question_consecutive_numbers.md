@@ -44,6 +44,32 @@ INSERT INTO NUMBERS (value) VALUES
 (4);
 ```
 
+```python
+from pyspark.sql.types import StructType, StructField, IntegerType
+
+# Define schema
+numbers_schema = StructType([
+    StructField("value", IntegerType(), nullable=True)
+])
+
+# Data
+numbers_data = [
+    (1,),
+    (1,),
+    (2,),
+    (1,),
+    (3,),
+    (3,),
+    (4,),
+    (4,),
+    (4,)
+]
+
+# Create DataFrame
+numbers_df = spark.createDataFrame(numbers_data, schema=numbers_schema)
+```
+
+
 ---
 
 ## NUMBERS Table

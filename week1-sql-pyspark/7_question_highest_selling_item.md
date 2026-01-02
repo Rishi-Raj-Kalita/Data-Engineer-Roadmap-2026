@@ -84,6 +84,52 @@ INSERT INTO ORDER_DETAILS (id, item_name, qty, amount, order_id) VALUES
 
 ---
 
+```python
+from pyspark.sql.types import (
+    StructType, StructField, IntegerType, StringType, DecimalType, DateType
+)
+from datetime import date
+
+# ORDERS schema
+orders_schema = StructType([
+    StructField("id", IntegerType(), nullable=False),
+    StructField("price", DecimalType(10, 2), nullable=True),
+    StructField("discount", DecimalType(10, 2), nullable=True),
+    StructField("net_amt", DecimalType(10, 2), nullable=True),
+    StructField("order_date", DateType(), nullable=True)
+])
+
+# ORDERS data
+orders_data = [
+    (1, 500.00, 50.00, 450.00, date(2025, 1, 1)),
+    (2, 800.00, 100.00, 700.00, date(2025, 1, 1)),
+    (3, 300.00, 0.00, 300.00, date(2025, 1, 2))
+]
+
+orders_df = spark.createDataFrame(orders_data, schema=orders_schema)
+
+
+# ORDER_DETAILS schema
+order_details_schema = StructType([
+    StructField("id", IntegerType(), nullable=False),
+    StructField("item_name", StringType(), nullable=True),
+    StructField("qty", IntegerType(), nullable=True),
+    StructField("amount", DecimalType(10, 2), nullable=True),
+    StructField("order_id", IntegerType(), nullable=True)
+])
+
+# ORDER_DETAILS data
+order_details_data = [
+    (1, "Laptop", 1, 400.00, 1),
+    (2, "Mouse", 2, 100.00, 1),
+    (3, "Laptop", 1, 700.00, 2),
+    (4, "Keyboard", 1, 300.00, 3)
+]
+
+order_details_df = spark.createDataFrame(order_details_data, schema=order_details_schema)
+```
+
+
 ## Expected Output (for 1st January 2025)
 
 | item_name |

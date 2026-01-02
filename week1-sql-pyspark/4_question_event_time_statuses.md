@@ -31,6 +31,39 @@ INSERT INTO ORDER_EVENTS (event_id, order_id, status, event_time) VALUES
 
 ```
 
+```python
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DateType
+from datetime import date
+
+# Define schema
+order_events_schema = StructType([
+    StructField("event_id", IntegerType(), nullable=False),
+    StructField("order_id", IntegerType(), nullable=True),
+    StructField("status", StringType(), nullable=True),
+    StructField("event_time", DateType(), nullable=True)
+])
+
+# Data
+order_events_data = [
+    (1, 1, "open", date(2024, 1, 1)),
+    (2, 2, "open", date(2024, 1, 2)),
+    (3, 3, "submitted", date(2024, 1, 3)),
+    (4, 1, "open", date(2024, 1, 4)),
+    (5, 1, "pending", date(2024, 1, 5)),
+    (6, 2, "open", date(2024, 1, 6)),
+    (7, 2, "processing", date(2024, 1, 7)),
+    (8, 3, "open", date(2024, 1, 8)),
+    (9, 1, "open", date(2024, 1, 9)),
+    (10, 1, "closed", date(2024, 1, 10)),
+    (11, 2, "closed", date(2024, 1, 11)),
+    (12, 3, "pending", date(2024, 1, 12))
+]
+
+# Create DataFrame
+order_events_df = spark.createDataFrame(order_events_data, schema=order_events_schema)
+```
+
+
 ### Input Table: ORDER_EVENTS
 
 | Event ID | Order ID | Status  | Event Time |

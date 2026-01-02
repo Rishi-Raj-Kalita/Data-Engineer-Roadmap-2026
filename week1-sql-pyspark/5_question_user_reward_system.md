@@ -60,6 +60,78 @@ INSERT INTO TRANSACTIONS (transaction_id, user_id, transaction_date, amount) VAL
 
 ```
 
+```python
+from pyspark.sql.types import (
+    StructType, StructField, IntegerType, StringType, DateType, DecimalType
+)
+from datetime import date
+
+# USERS schema
+users_schema = StructType([
+    StructField("user_id", IntegerType(), nullable=False),
+    StructField("user_name", StringType(), nullable=True),
+    StructField("registration_date", DateType(), nullable=True)
+])
+
+# USERS data
+users_data = [
+    (1, "Alice", date(2024, 1, 15)),
+    (2, "Bob", date(2024, 2, 20)),
+    (3, "Charlie", date(2024, 3, 10)),
+    (4, "Diana", date(2024, 4, 5)),
+    (5, "Eve", date(2024, 5, 12))
+]
+
+users_df = spark.createDataFrame(users_data, schema=users_schema)
+
+
+# ACTIVITY_LOGS schema
+activity_logs_schema = StructType([
+    StructField("log_id", IntegerType(), nullable=False),
+    StructField("user_id", IntegerType(), nullable=True),
+    StructField("activity_date", DateType(), nullable=True),
+    StructField("activity_type", StringType(), nullable=True)
+])
+
+# ACTIVITY_LOGS data
+activity_logs_data = [
+    (1, 1, date(2024, 12, 1), "login"),
+    (2, 1, date(2024, 12, 3), "login"),
+    (3, 1, date(2024, 12, 5), "login"),
+    (4, 2, date(2024, 12, 2), "login"),
+    (5, 2, date(2024, 12, 4), "login"),
+    (6, 3, date(2024, 12, 1), "login"),
+    (7, 3, date(2024, 12, 6), "login"),
+    (8, 4, date(2024, 12, 3), "login"),
+    (9, 5, date(2024, 12, 5), "login")
+]
+
+activity_logs_df = spark.createDataFrame(activity_logs_data, schema=activity_logs_schema)
+
+
+# TRANSACTIONS schema
+transactions_schema = StructType([
+    StructField("transaction_id", IntegerType(), nullable=False),
+    StructField("user_id", IntegerType(), nullable=True),
+    StructField("transaction_date", DateType(), nullable=True),
+    StructField("amount", DecimalType(10, 2), nullable=True)
+])
+
+# TRANSACTIONS data
+transactions_data = [
+    (1, 1, date(2024, 12, 2), 150.00),
+    (2, 1, date(2024, 12, 4), 200.00),
+    (3, 2, date(2024, 12, 3), 75.00),
+    (4, 2, date(2024, 12, 5), 300.00),
+    (5, 3, date(2024, 12, 1), 600.00),
+    (6, 4, date(2024, 12, 4), 1200.00),
+    (7, 5, date(2024, 12, 6), 50.00)
+]
+
+transactions_df = spark.createDataFrame(transactions_data, schema=transactions_schema)
+```
+
+
 ### Database Schema
 
 #### Table 1: USERS

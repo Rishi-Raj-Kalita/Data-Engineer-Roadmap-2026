@@ -20,6 +20,28 @@ INSERT INTO STUDENTS (school_name, student_name, weight) VALUES
 ('B', 'S3', 70);
 ```
 
+```python
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+
+# Define schema
+students_schema = StructType([
+    StructField("school_name", StringType(), nullable=True),
+    StructField("student_name", StringType(), nullable=True),
+    StructField("weight", IntegerType(), nullable=True)
+])
+
+# Data
+students_data = [
+    ("A", "S1", 30),
+    ("A", "S2", 60),
+    ("B", "S3", 70)
+]
+
+# Create DataFrame
+students_df = spark.createDataFrame(students_data, schema=students_schema)
+```
+
+
 ### Input Table: STUDENTS
 
 | school_name | student_name | weight |

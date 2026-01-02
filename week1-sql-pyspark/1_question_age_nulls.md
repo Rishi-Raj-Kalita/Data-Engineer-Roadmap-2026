@@ -24,6 +24,30 @@ INSERT INTO EMP (Id, Name, Age) VALUES
 (7, 'Anand', 31);
 ```
 
+```python
+# Define schema
+emp_schema = StructType([
+    StructField("Id", IntegerType(), nullable=False),
+    StructField("Name", StringType(), nullable=True),
+    StructField("Age", IntegerType(), nullable=True)
+])
+
+# Data (equivalent to SQL INSERT statements)
+emp_data = [
+    (1, "Dinesh", 30),
+    (2, "Ramesh", 28),
+    (3, "Suresh", None),
+    (4, "Vaibhav", 24),
+    (5, "Pallavi", None),
+    (6, "Mohan", None),
+    (7, "Anand", 31)
+]
+
+# Create DataFrame
+emp_df = spark.createDataFrame(emp_data, schema=emp_schema)
+```
+
+
 ### Input Table: EMP
 
 | Id | Name    | Age  |
