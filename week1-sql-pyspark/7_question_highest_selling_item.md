@@ -98,14 +98,3 @@ INSERT INTO ORDER_DETAILS (id, item_name, qty, amount, order_id) VALUES
 * Aggregate sales using **order_details.amount**
 * Identify the item with the **highest total sales amount**
 * Handle multiple orders and multiple items per order
-
----
-
-If you want next:
-
-* SQL solution using **GROUP BY and ORDER BY**
-* PySpark implementation
-* Interview-style explanation
-* Edge cases like ties in sales amount
-
-Just tell me 👍
