@@ -38,25 +38,29 @@ INSERT INTO USERS (user_id, user_name, registration_date) VALUES
 
 
 INSERT INTO ACTIVITY_LOGS (log_id, user_id, activity_date, activity_type) VALUES
-(1, 1, '2024-12-01', 'login'),
-(2, 1, '2024-12-03', 'login'),
-(3, 1, '2024-12-05', 'login'),
-(4, 2, '2024-12-02', 'login'),
-(5, 2, '2024-12-04', 'login'),
-(6, 3, '2024-12-01', 'login'),
-(7, 3, '2024-12-06', 'login'),
-(8, 4, '2024-12-03', 'login'),
-(9, 5, '2024-12-05', 'login');
+(1, 1, '2025-12-21', 'login'),
+(2, 1, '2025-12-23', 'login'),
+(3, 1, '2025-12-25', 'login'),
+(4, 2, '2025-12-22', 'login'),
+(5, 2, '2025-12-24', 'login'),
+(6, 3, '2025-12-21', 'login'),
+(7, 3, '2025-12-26', 'login'),
+(8, 4, '2025-12-23', 'login'),
+(9, 5, '2025-12-25', 'login'),
+(10, 1, '2025-12-26', 'login'),
+(11, 1, '2025-12-27', 'login'),
+(12, 1, '2025-12-28', 'login'),
+(13, 1, '2025-12-29', 'login');
 
 
 INSERT INTO TRANSACTIONS (transaction_id, user_id, transaction_date, amount) VALUES
-(1, 1, '2024-12-02', 150.00),
-(2, 1, '2024-12-04', 200.00),
-(3, 2, '2024-12-03', 75.00),
-(4, 2, '2024-12-05', 300.00),
-(5, 3, '2024-12-01', 600.00),
-(6, 4, '2024-12-04', 1200.00),
-(7, 5, '2024-12-06', 50.00);
+(1, 1, '2025-12-22', 150.00),
+(2, 1, '2025-12-24', 200.00),
+(3, 2, '2025-12-23', 75.00),
+(4, 2, '2025-12-25', 300.00),
+(5, 3, '2025-12-21', 600.00),
+(6, 4, '2025-12-24', 1200.00),
+(7, 5, '2025-12-26', 50.00);
 
 ```
 
@@ -95,15 +99,19 @@ activity_logs_schema = StructType([
 
 # ACTIVITY_LOGS data
 activity_logs_data = [
-    (1, 1, date(2024, 12, 1), "login"),
-    (2, 1, date(2024, 12, 3), "login"),
-    (3, 1, date(2024, 12, 5), "login"),
-    (4, 2, date(2024, 12, 2), "login"),
-    (5, 2, date(2024, 12, 4), "login"),
-    (6, 3, date(2024, 12, 1), "login"),
-    (7, 3, date(2024, 12, 6), "login"),
-    (8, 4, date(2024, 12, 3), "login"),
-    (9, 5, date(2024, 12, 5), "login")
+    (1, 1, date(2025, 12, 21), "login"),
+    (2, 1, date(2025, 12, 23), "login"),
+    (3, 1, date(2025, 12, 25), "login"),
+    (4, 2, date(2025, 12, 22), "login"),
+    (5, 2, date(2025, 12, 24), "login"),
+    (6, 3, date(2025, 12, 21), "login"),
+    (7, 3, date(2025, 12, 26), "login"),
+    (8, 4, date(2025, 12, 23), "login"),
+    (9, 5, date(2025, 12, 25), "login"),
+    (10, 1, date(2025, 12, 26), "login"),
+    (11, 1, date(2025, 12, 27), "login"),
+    (12, 1, date(2025, 12, 28), "login"),
+    (13, 1, date(2025, 12, 29), "login")
 ]
 
 activity_logs_df = spark.createDataFrame(activity_logs_data, schema=activity_logs_schema)
@@ -114,18 +122,18 @@ transactions_schema = StructType([
     StructField("transaction_id", IntegerType(), nullable=False),
     StructField("user_id", IntegerType(), nullable=True),
     StructField("transaction_date", DateType(), nullable=True),
-    StructField("amount", DecimalType(10, 2), nullable=True)
+    StructField("amount", IntegerType(), nullable=True)
 ])
 
 # TRANSACTIONS data
 transactions_data = [
-    (1, 1, date(2024, 12, 2), 150.00),
-    (2, 1, date(2024, 12, 4), 200.00),
-    (3, 2, date(2024, 12, 3), 75.00),
-    (4, 2, date(2024, 12, 5), 300.00),
-    (5, 3, date(2024, 12, 1), 600.00),
-    (6, 4, date(2024, 12, 4), 1200.00),
-    (7, 5, date(2024, 12, 6), 50.00)
+    (1, 1, date(2025, 12, 22), 150),
+    (2, 1, date(2025, 12, 24), 200),
+    (3, 2, date(2025, 12, 23), 75),
+    (4, 2, date(2025, 12, 25), 300),
+    (5, 3, date(2025, 12, 21), 600),
+    (6, 4, date(2025, 12, 24), 1200),
+    (7, 5, date(2025, 12, 26), 50)
 ]
 
 transactions_df = spark.createDataFrame(transactions_data, schema=transactions_schema)
@@ -171,26 +179,26 @@ transactions_df = spark.createDataFrame(transactions_data, schema=transactions_s
 #### ACTIVITY_LOGS Table
 | log_id | user_id | activity_date | activity_type |
 |--------|---------|---------------|---------------|
-| 1      | 1       | 2024-12-01    | login         |
-| 2      | 1       | 2024-12-03    | login         |
-| 3      | 1       | 2024-12-05    | login         |
-| 4      | 2       | 2024-12-02    | login         |
-| 5      | 2       | 2024-12-04    | login         |
-| 6      | 3       | 2024-12-01    | login         |
-| 7      | 3       | 2024-12-06    | login         |
-| 8      | 4       | 2024-12-03    | login         |
-| 9      | 5       | 2024-12-05    | login         |
+| 1      | 1       | 2025-12-21    | login         |
+| 2      | 1       | 2025-12-23    | login         |
+| 3      | 1       | 2025-12-25    | login         |
+| 4      | 2       | 2025-12-22    | login         |
+| 5      | 2       | 2025-12-24    | login         |
+| 6      | 3       | 2025-12-21    | login         |
+| 7      | 3       | 2025-12-26    | login         |
+| 8      | 4       | 2025-12-23    | login         |
+| 9      | 5       | 2025-12-25    | login         |
 
 #### TRANSACTIONS Table
 | transaction_id | user_id | transaction_date | amount |
 |----------------|---------|------------------|--------|
-| 1              | 1       | 2024-12-02       | 150.00 |
-| 2              | 1       | 2024-12-04       | 200.00 |
-| 3              | 2       | 2024-12-03       | 75.00  |
-| 4              | 2       | 2024-12-05       | 300.00 |
-| 5              | 3       | 2024-12-01       | 600.00 |
-| 6              | 4       | 2024-12-04       | 1200.00|
-| 7              | 5       | 2024-12-06       | 50.00  |
+| 1              | 1       | 2025-12-22       | 150.00 |
+| 2              | 1       | 2025-12-24       | 200.00 |
+| 3              | 2       | 2025-12-23       | 75.00  |
+| 4              | 2       | 2025-12-25       | 300.00 |
+| 5              | 3       | 2025-12-21       | 600.00 |
+| 6              | 4       | 2025-12-24       | 1200.00|
+| 7              | 5       | 2025-12-26       | 50.00  |
 
 ### Reward Tier Criteria (Last 30 Days)
 - **Bronze**: Logged in at least 5 times AND spent over $100
